@@ -2,26 +2,24 @@ require([
     "esri/tasks/Locator",
     "esri/Map",
     "esri/views/MapView",
-    "esri/layers/TileLayer",
-    "esri/layers/FeatureLayer",
-    "esri/widgets/LayerList",
     "esri/widgets/BasemapToggle",
     "esri/widgets/Locate",
     "dojo/domReady!"
-], function (Locator, Map, MapView, TileLayer, FeatureLayer, LayerList, BasemapToggle, Locate) {
+], function (Locator, Map, MapView, BasemapToggle, Locate) {
+    const fujitsu = [-71.306222, 46.830545];
     const map = new Map({
         basemap: "streets",
     });
     const view = new MapView({
         container: "viewDiv",
-        map: map,
+        map,
         zoom: 11.2,
-        center: [-118.64517051490193, 34.07522075109096]
+        center: fujitsu
     });
 
     // Widgets
     const basemapToggle = new BasemapToggle({
-        view: view,
+        view,
         nextBasemap: "hybrid"
     });
     view.ui.add(basemapToggle, {
@@ -29,7 +27,7 @@ require([
     });
 
     const locateWidget = new Locate({
-        view: view
+        view
     });
     view.ui.add(locateWidget, {
         position: "bottom-left"
