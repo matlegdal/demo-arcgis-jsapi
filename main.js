@@ -4,8 +4,9 @@ require([
     "esri/views/MapView",
     "esri/widgets/BasemapToggle",
     "esri/widgets/Locate",
+    "esri/widgets/Search",
     "dojo/domReady!"
-], function (Locator, Map, MapView, BasemapToggle, Locate) {
+], function (Locator, Map, MapView, BasemapToggle, Locate, Search) {
     const fujitsu = [-71.306222, 46.830545];
     const map = new Map({
         basemap: "streets",
@@ -13,7 +14,7 @@ require([
     const view = new MapView({
         container: "viewDiv",
         map,
-        zoom: 11.2,
+        zoom: 15,
         center: fujitsu
     });
 
@@ -26,11 +27,20 @@ require([
         position: "bottom-right"
     });
 
+    // Find my position widget
     const locateWidget = new Locate({
         view
     });
     view.ui.add(locateWidget, {
         position: "bottom-left"
+    });
+
+    // Search widget
+    const searchWidget = new Search({
+        view
+    });
+    view.ui.add(searchWidget, {
+        position: "top-right"
     });
 
     // Popup locator
