@@ -12,7 +12,7 @@ require([
         basemap: "streets",
     });
     const view = new MapView({
-        container: "viewDiv",
+        container: "map",
         map,
         zoom: 15,
         center: fujitsu
